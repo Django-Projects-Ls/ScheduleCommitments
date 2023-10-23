@@ -9,5 +9,8 @@
     <p> {{ commitment.nome }} </p>
     <p> {{ commitment.description }} </p>
     <p> {{ commitment.data }} </p>
+
+    <button onclick="location.href = 'edit-forms/{{ commitment.id }}'">Editar</button>
+    <button onclick="location.href = 'delete-forms/{{ commitment.id }}'">Excluir</button>
 </body>
 </html>
