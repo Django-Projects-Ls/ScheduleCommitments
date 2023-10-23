@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Compromissos Agendados</h1>
+   {% for information in commitment %}
+    <a href='details/{{ information.id }}'><p>{{ information.nome }} pra {{ information.data }}</p></a>
+   {% endfor %}
+   <button onclick="location.href = '/create-forms'">Adicionar compromisso</button>
+</body>
+</html>
