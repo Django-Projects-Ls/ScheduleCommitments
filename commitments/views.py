@@ -1,9 +1,21 @@
 from .models import Commitment
 from django.shortcuts import redirect, render
 from .forms import CommitmentsForms
+from django.db.models import Q
 
 def commitments_request_handler(request):
-    return render(request, 'index.html', {'commitment' : Commitment.objects.all().values()})
+    dados = {}
+    query = request.GET.get('q')
+    print(query)
+    if query:
+        dados['query'] = query
+        queryset = (Q(data__icontains=query))
+        items = Commitment.objects.filter(queryset).distinct()
+    else:
+        items = Commitment.objects.all()
+    
+    dados['commitment'] = items
+    return render(request, 'index.html', dados)
 
 def details_request_handler(request, id):
     return render(request, 'details.html', {'commitment' : Commitment.objects.get(id=id)})
